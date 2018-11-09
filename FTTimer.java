@@ -14,6 +14,12 @@ public class FTTimer {
 		JButton button = new JButton("Button Here");
 		panel.add(button);
 
+		JTextField textField = new JTextField();
+		textField.setPreferredSize(new Dimension(200, 30));
+		panel.add(textField);
+
+
+
 		frame.setSize(new Dimension(500,500));
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
