@@ -1,6 +1,6 @@
 //Alpha 0.1 (a.1) Nov 08, 2018
 
-import java.awt.event.*;
+import java.awt.event.*; //allows for ActionListener
 import java.awt.*;
 import javax.swing.*;
 
