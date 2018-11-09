@@ -1,30 +1,71 @@
 //Alpha 0.1 (a.1) Nov 08, 2018
 
-import javax.swing.*;
+import java.awt.event.*;
 import java.awt.*;
+import javax.swing.*;
 
-public class FTTimer {
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
+public class FTTimer extends JFrame{
+
+	private JButton buttonCounter, buttonReset;
+	private JLabel labelCount;
+
+	private int clicks = 0;
+
+	public FTTimer() {
+		createView();
+
+		setTitle("Click Me");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pack();
+		setLocationRelativeTo(null);
+		setResizable(false);
+	}
+
+	private void createView(){
 		JPanel panel = new JPanel();
+		getContentPane().add(panel);
 
-		panel.setBackground(Color.BLACK);
-		frame.getContentPane().add(panel);
+		labelCount = new JLabel();
+		labelCount.setPreferredSize(new Dimension(200, 30));
+		panel.add(labelCount);
+		updateCounter();
 
-		JButton button = new JButton("Button Here");
-		panel.add(button);
+		buttonCounter = new JButton("Click me");
+		buttonCounter.addActionListener(
+			new ButtonCounterActionListener());
+		panel.add(buttonCounter);
 
-		JTextField textField = new JTextField();
-		textField.setPreferredSize(new Dimension(200, 30));
-		panel.add(textField);
+		buttonReset = new JButton("Reset");
+		buttonReset.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					clicks = 0;
+					updateCounter();
+				}
+			}
+		);
+		panel.add(buttonReset);
 
+	}
 
+	private void updateCounter(){
+		labelCount.setText("Clicked " + clicks + " times");
+	}
 
-		frame.setSize(new Dimension(500,500));
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("FTTimer version a.1");
-		frame.setResizable(false);
-		frame.setVisible(true);
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable(){
+			@Override
+			public void run(){
+				new FTTimer().setVisible(true);
+			}
+		});
+	}
+	private class ButtonCounterActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			clicks++;
+			updateCounter();
+		}
 	}
 }
