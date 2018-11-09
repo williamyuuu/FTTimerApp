@@ -12,8 +12,7 @@ public class TimeTracker {
 			secondsPassed--;
 			displayMin = secondsPassed / 60;
 			displaySec = secondsPassed % 60;
-			System.out.printf("%01d:%02d",displayMin,displaySec);
-			System.out.println();
+			System.out.printf("%01d:%02d\n",displayMin,displaySec);
 
 		}
 	};
