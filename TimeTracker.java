@@ -1,10 +1,13 @@
-
+import java.awt.*;
 import java.util.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class TimeTracker {
 
 	int secondsPassed = 600;
 	int displayMin, displaySec;
+	private JLabel labelCount;
 
 	Timer timer = new Timer();
 	TimerTask task = new TimerTask() {
@@ -14,10 +17,10 @@ public class TimeTracker {
 			displaySec = secondsPassed % 60;
 			System.out.printf("%01d:%02d",displayMin,displaySec);
 			System.out.println();
-
 		}
 	};
+
 	public void start(){
-	 	timer.scheduleAtFixedRate(task,1000,1000);
+		timer.scheduleAtFixedRate(task,1000,1000);
 	}
 }

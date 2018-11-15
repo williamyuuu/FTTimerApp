@@ -22,6 +22,7 @@ public class Layout extends JFrame{
 		labelCount = new JLabel();
 		labelCount.setPreferredSize(new Dimension(750, 200));
 		panel.add(labelCount);
+		labelCount.setText("From Layout");
 
 		TimeTracker timer = new TimeTracker();
 		timer.start();
