@@ -6,6 +6,8 @@ import java.util.Timer;
 
 public class tester extends JFrame{
 
+	JPanel panel = new JPanel();
+
 	Timer timer = new Timer();
 	TimerTask task = new TimerTask() {
 		public void run() {
@@ -16,13 +18,16 @@ public class tester extends JFrame{
 			updateCounter();
 			if(secondsPassed < 1){
 				secondsPassed = 1;
+				panel.setBackground(Color.RED);
+			} else if(secondsPassed <= RESET_TIME*0.75) { //75% is at 45 seconds
+				panel.setBackground(Color.YELLOW);
 			}
 		}
 	};
 
 	private JButton buttonCounter, buttonReset;
 	private JLabel labelCount;
-	private final int RESET_TIME = 10;
+	private final int RESET_TIME = 60;
 	private int displayMin = RESET_TIME/60;
 	private int displaySec = RESET_TIME%60;
 	private int secondsPassed;
@@ -30,7 +35,7 @@ public class tester extends JFrame{
 	public tester() {
 		createView();
 
-		setTitle("Click Me");
+		setTitle("FTTimer version a.1");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		setLocationRelativeTo(null);
@@ -38,8 +43,9 @@ public class tester extends JFrame{
 	}
 
 	private void createView(){
-		JPanel panel = new JPanel();
+		//JPanel panel = new JPanel();
 		getContentPane().add(panel);
+		panel.setOpaque(true);
 
 		labelCount = new JLabel();
 		labelCount.setPreferredSize(new Dimension(200, 30));
@@ -82,6 +88,7 @@ public class tester extends JFrame{
 	private class ButtonCounterActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			panel.setBackground(Color.GREEN);
 			secondsPassed = RESET_TIME;
 			timer.scheduleAtFixedRate(task,1000,1000);
 		}
