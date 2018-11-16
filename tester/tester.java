@@ -1,3 +1,7 @@
+//Include a timer pause / resume
+// timer pause will cancel, timer resume will create new timer/TimerTask
+//Both of these will be under a method
+
 import java.awt.event.*; //allows for ActionListener
 import java.awt.*;
 import javax.swing.*;
@@ -57,20 +61,20 @@ public class tester extends JFrame{
 			new ButtonCounterActionListener());
 		panel.add(buttonCounter);
 
-		/*
-		buttonReset = new JButton("Reset");
+
+		buttonReset = new JButton("Stop Timer");
 		buttonReset.addActionListener(
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					secondsPassed = 10;
+					secondsPassed = 0;
 					updateCounter();
+					timer.cancel();
+					System.out.println("Timer task completely wiped. GG noob!");
 				}
 			}
 		);
 		panel.add(buttonReset);
-		*/
-
 	}
 
 	private void updateCounter(){
