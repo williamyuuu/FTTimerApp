@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.util.TimerTask;
 import java.util.Timer;
 
-public class tester extends JFrame{
+public class FTTimer extends JFrame{
 
 	JPanel panel = new JPanel();
 
@@ -34,7 +34,7 @@ public class tester extends JFrame{
 	private int displaySec = RESET_TIME%60;
 	private int secondsPassed;
 
-	public tester() {
+	public FTTimer() {
 		createView();
 
 		setTitle("FTTimer version a.1");
@@ -83,7 +83,7 @@ public class tester extends JFrame{
 		SwingUtilities.invokeLater(new Runnable(){
 			@Override
 			public void run(){
-				new tester().setVisible(true);
+				new FTTimer().setVisible(true);
 			}
 		});
 	}
