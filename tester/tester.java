@@ -1,6 +1,4 @@
-//Include a timer pause / resume
-// timer pause will cancel, timer resume will create new timer/TimerTask
-//Both of these will be under a method
+//Alpha 0.1 (a.1) Nov 08, 2018
 
 import java.awt.event.*; //allows for ActionListener
 import java.awt.*;
@@ -12,34 +10,18 @@ public class tester extends JFrame{
 
 	JPanel panel = new JPanel();
 
-	Timer timer = new Timer();
-	TimerTask task = new TimerTask() {
-		public void run() {
-			secondsPassed--;
-			displayMin = secondsPassed / 60;
-			displaySec = secondsPassed % 60;
-			System.out.println(secondsPassed); //displays on cmd
-			updateCounter();
-			if(secondsPassed < 1){
-				secondsPassed = 1;
-				panel.setBackground(Color.RED);
-			} else if(secondsPassed <= RESET_TIME*0.75) { //75% is at 45 seconds
-				panel.setBackground(Color.YELLOW);
-			}
-		}
-	};
-
-	private JButton buttonCounter, buttonReset;
+	private JButton buttonStart, buttonPause;
 	private JLabel labelCount;
 	private final int RESET_TIME = 60;
 	private int displayMin = RESET_TIME/60;
 	private int displaySec = RESET_TIME%60;
 	private int secondsPassed;
+	private int timerRunning = 0;
 
 	public tester() {
 		createView();
 
-		setTitle("FTTimer version a.1");
+		setTitle("Frenzy Timer version a.1");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		setLocationRelativeTo(null);
@@ -56,29 +38,69 @@ public class tester extends JFrame{
 		panel.add(labelCount);
 		updateCounter();
 
-		buttonCounter = new JButton("Start Timer");
-		buttonCounter.addActionListener(
-			new ButtonCounterActionListener());
-		panel.add(buttonCounter);
+		//start 10 minute timer
+		buttonStart = new JButton("Start Timer");
+		buttonStart.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panel.setBackground(Color.GREEN);
+					secondsPassed = RESET_TIME;
+					timerRunning = startTime(timerRunning);
+					if (timerRunning == 2) {
+						secondsPassed = RESET_TIME;
+					}
+			}
+		});
+		panel.add(buttonStart);
 
-
-		buttonReset = new JButton("Stop Timer");
-		buttonReset.addActionListener(
+		//holds the time and cancels the timer
+		buttonPause = new JButton("Pause Timer");
+		buttonPause.addActionListener(
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					secondsPassed = 0;
 					updateCounter();
-					timer.cancel();
 					System.out.println("Timer task completely wiped. GG noob!");
 				}
 			}
 		);
-		panel.add(buttonReset);
+		panel.add(buttonPause);
 	}
 
 	private void updateCounter(){
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
+	}
+
+	private int startTime(int x) {
+	 	int ans;
+
+		//incorporate a way to cancel timer but still start a new one
+		if(x == 0) {
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+				public void run() {
+					secondsPassed--;
+					displayMin = secondsPassed / 60;
+					displaySec = secondsPassed % 60;
+					System.out.println(secondsPassed); //displays on cmd
+					updateCounter();
+					if(secondsPassed < 1){
+						panel.setBackground(Color.RED);
+						timer.cancel();
+					} else if(secondsPassed <= RESET_TIME*0.25) { //75% is at 15 seconds
+						panel.setBackground(Color.YELLOW);
+					}
+				} //end of run
+			}; //end of timer task
+			timer.scheduleAtFixedRate(task,1000,1000);
+			ans = 1;
+		}
+		else {
+			ans = 2;
+		}
+		return ans;
 	}
 
 	public static void main(String[] args) {
@@ -88,13 +110,5 @@ public class tester extends JFrame{
 				new tester().setVisible(true);
 			}
 		});
-	}
-	private class ButtonCounterActionListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			panel.setBackground(Color.GREEN);
-			secondsPassed = RESET_TIME;
-			timer.scheduleAtFixedRate(task,1000,1000);
-		}
 	}
 }
