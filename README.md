@@ -1,5 +1,3 @@
-Currently learning JFrames (so these are testers)
-
 FT Timer Application
 Allows you to track FT Service
 - Name
