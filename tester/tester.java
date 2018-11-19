@@ -16,10 +16,9 @@ public class tester extends JFrame{
 	private int displayMin = RESET_TIME/60;
 	private int displaySec = RESET_TIME%60;
 	private int secondsPassed;
-	private int timerRunning = 0;
 
-	Timer timer;
-	TimerTask task;
+	private Timer timer;
+	private TimerTask task;
 
 	public tester() {
 		createView();
