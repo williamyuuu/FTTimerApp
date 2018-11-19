@@ -18,6 +18,9 @@ public class tester extends JFrame{
 	private int secondsPassed;
 	private int timerRunning = 0;
 
+	Timer timer;
+	TimerTask task;
+
 	public tester() {
 		createView();
 
@@ -29,9 +32,10 @@ public class tester extends JFrame{
 	}
 
 	private void createView(){
-		//JPanel panel = new JPanel();
+		//JPanel panel = new JPanel(); //blocks colors from showing (?)
 		getContentPane().add(panel);
 		panel.setOpaque(true);
+		panel.setBackground(Color.GREEN);
 
 		labelCount = new JLabel();
 		labelCount.setPreferredSize(new Dimension(200, 30));
@@ -44,25 +48,22 @@ public class tester extends JFrame{
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					panel.setBackground(Color.GREEN);
 					secondsPassed = RESET_TIME;
-					timerRunning = startTime(timerRunning);
-					if (timerRunning == 2) {
-						secondsPassed = RESET_TIME;
-					}
+					startTime();
 			}
 		});
 		panel.add(buttonStart);
 
 		//holds the time and cancels the timer
-		buttonPause = new JButton("Pause Timer");
+		buttonPause = new JButton("Stop Timer");
 		buttonPause.addActionListener(
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					secondsPassed = 0;
+					stopTime();
 					updateCounter();
-					System.out.println("Timer task completely wiped. GG noob!");
+					System.out.println("Timer stopped!");
 				}
 			}
 		);
@@ -73,34 +74,36 @@ public class tester extends JFrame{
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
 	}
 
-	private int startTime(int x) {
-	 	int ans;
-
-		//incorporate a way to cancel timer but still start a new one
-		if(x == 0) {
-			Timer timer = new Timer();
-			TimerTask task = new TimerTask() {
-				public void run() {
-					secondsPassed--;
-					displayMin = secondsPassed / 60;
-					displaySec = secondsPassed % 60;
-					System.out.println(secondsPassed); //displays on cmd
-					updateCounter();
-					if(secondsPassed < 1){
-						panel.setBackground(Color.RED);
-						timer.cancel();
-					} else if(secondsPassed <= RESET_TIME*0.25) { //75% is at 15 seconds
-						panel.setBackground(Color.YELLOW);
-					}
-				} //end of run
-			}; //end of timer task
+	private void startTime() {
+		if(timer != null) {
+			stopTime();
+		}
+			timer = new Timer();
+			createTask();
 			timer.scheduleAtFixedRate(task,1000,1000);
-			ans = 1;
-		}
-		else {
-			ans = 2;
-		}
-		return ans;
+	}
+
+	private void createTask() {
+		task = new TimerTask() {
+		   public void run() {
+			   secondsPassed--;
+			   displayMin = secondsPassed / 60;
+			   displaySec = secondsPassed % 60;
+			   System.out.println(secondsPassed); //displays on cmd
+			   updateCounter();
+			   if(secondsPassed < 1){
+				   secondsPassed = 1;
+				   stopTime();
+				   panel.setBackground(Color.RED);
+			   } else if(secondsPassed <= RESET_TIME*0.25) { //75% is at 15 seconds
+				   panel.setBackground(Color.YELLOW);
+			   }
+		   } //end of run
+	   }; //end of timer task
+	}
+
+	private void stopTime() {
+		timer.cancel();
 	}
 
 	public static void main(String[] args) {
