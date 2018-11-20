@@ -16,10 +16,9 @@ public class FTTimer extends JFrame{
 	private int displayMin = RESET_TIME/60;
 	private int displaySec = RESET_TIME%60;
 	private int secondsPassed;
-	private int timerRunning = 0;
 
-	Timer timer;
-	TimerTask task;
+	private Timer timer;
+	private TimerTask task;
 
 	public FTTimer() {
 		createView();
@@ -40,7 +39,7 @@ public class FTTimer extends JFrame{
 		labelCount = new JLabel();
 		labelCount.setPreferredSize(new Dimension(200, 30));
 		panel.add(labelCount);
-		updateCounter();
+		displayTime();
 
 		//start 10 minute timer
 		buttonStart = new JButton("Start Timer");
@@ -62,7 +61,7 @@ public class FTTimer extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					secondsPassed = 0;
 					stopTime();
-					updateCounter();
+					displayTime();
 					System.out.println("Timer stopped!");
 				}
 			}
@@ -70,7 +69,7 @@ public class FTTimer extends JFrame{
 		panel.add(buttonPause);
 	}
 
-	private void updateCounter(){
+	private void displayTime(){
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
 	}
 
@@ -79,23 +78,23 @@ public class FTTimer extends JFrame{
 			stopTime();
 		}
 			timer = new Timer();
+			panel.setBackground(Color.GREEN);
 			createTask();
-			timer.scheduleAtFixedRate(task,1000,1000);
+			timer.scheduleAtFixedRate(task,0,1000);
 	}
 
 	private void createTask() {
 		task = new TimerTask() {
 		   public void run() {
-			   secondsPassed--;
 			   displayMin = secondsPassed / 60;
 			   displaySec = secondsPassed % 60;
 			   System.out.println(secondsPassed); //displays on cmd
-			   updateCounter();
-			   if(secondsPassed < 1){
-				   secondsPassed = 1;
+			   displayTime();
+			   secondsPassed--;
+			   if(secondsPassed < 0){ //stops at 0
 				   stopTime();
 				   panel.setBackground(Color.RED);
-			   } else if(secondsPassed <= RESET_TIME*0.25) { //75% is at 15 seconds
+			   } else if(secondsPassed < RESET_TIME*0.25) { //yellow at 25% of time
 				   panel.setBackground(Color.YELLOW);
 			   }
 		   } //end of run

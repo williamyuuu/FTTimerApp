@@ -39,7 +39,7 @@ public class tester extends JFrame{
 		labelCount = new JLabel();
 		labelCount.setPreferredSize(new Dimension(200, 30));
 		panel.add(labelCount);
-		updateCounter();
+		displayTime();
 
 		//start 10 minute timer
 		buttonStart = new JButton("Start Timer");
@@ -61,7 +61,7 @@ public class tester extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					secondsPassed = 0;
 					stopTime();
-					updateCounter();
+					displayTime();
 					System.out.println("Timer stopped!");
 				}
 			}
@@ -69,7 +69,7 @@ public class tester extends JFrame{
 		panel.add(buttonPause);
 	}
 
-	private void updateCounter(){
+	private void displayTime(){
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
 	}
 
@@ -89,7 +89,7 @@ public class tester extends JFrame{
 			   displayMin = secondsPassed / 60;
 			   displaySec = secondsPassed % 60;
 			   System.out.println(secondsPassed); //displays on cmd
-			   updateCounter();
+			   displayTime();
 			   secondsPassed--;
 			   if(secondsPassed < 0){ //stops at 0
 				   stopTime();
