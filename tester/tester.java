@@ -12,7 +12,7 @@ public class tester extends JFrame{
 
 	private JButton buttonStart, buttonPause;
 	private JLabel labelCount;
-	private final int RESET_TIME = 60;
+	private final int RESET_TIME = 10;
 	private int displayMin = RESET_TIME/60;
 	private int displaySec = RESET_TIME%60;
 	private int secondsPassed;
@@ -78,23 +78,23 @@ public class tester extends JFrame{
 			stopTime();
 		}
 			timer = new Timer();
+			panel.setBackground(Color.GREEN);
 			createTask();
-			timer.scheduleAtFixedRate(task,1000,1000);
+			timer.scheduleAtFixedRate(task,0,1000);
 	}
 
 	private void createTask() {
 		task = new TimerTask() {
 		   public void run() {
-			   secondsPassed--;
 			   displayMin = secondsPassed / 60;
 			   displaySec = secondsPassed % 60;
 			   System.out.println(secondsPassed); //displays on cmd
 			   updateCounter();
-			   if(secondsPassed < 1){
-				   secondsPassed = 1;
+			   secondsPassed--;
+			   if(secondsPassed < 0){ //stops at 0
 				   stopTime();
 				   panel.setBackground(Color.RED);
-			   } else if(secondsPassed <= RESET_TIME*0.25) { //75% is at 15 seconds
+			   } else if(secondsPassed < RESET_TIME*0.25) { //yellow at 25% of time
 				   panel.setBackground(Color.YELLOW);
 			   }
 		   } //end of run
