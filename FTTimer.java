@@ -35,20 +35,24 @@ public class FTTimer extends JFrame{
 		getContentPane().add(panel);
 		panel.setOpaque(true);
 		panel.setBackground(Color.GREEN);
+		panel.setPreferredSize(new Dimension(400,40));
 
 		labelCount = new JLabel();
-		labelCount.setPreferredSize(new Dimension(200, 30));
+		labelCount.setPreferredSize(new Dimension(100, 30));
 		panel.add(labelCount);
 		displayTime();
 
 		//start 10 minute timer
 		buttonStart = new JButton("Start Timer");
+		//buttonStart.setPreferredSize(new Dimension(100,20));
 		buttonStart.addActionListener(
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					buttonStart.setText("Restart Timer");
 					secondsPassed = RESET_TIME;
 					startTime();
+
 			}
 		});
 		panel.add(buttonStart);
@@ -61,8 +65,9 @@ public class FTTimer extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					secondsPassed = 0;
 					stopTime();
+					buttonStart.setText("Start Timer");
 					displayTime();
-					System.out.println("Timer stopped!");
+					System.out.println("Timer stopped!"); //debugger
 				}
 			}
 		);
@@ -74,11 +79,9 @@ public class FTTimer extends JFrame{
 	}
 
 	private void startTime() {
-		if(timer != null) {
 			stopTime();
-		}
 			timer = new Timer();
-			panel.setBackground(Color.GREEN);
+			panel.setBackground(Color.GREEN); //restarting timer resets color to GREEN
 			createTask();
 			timer.scheduleAtFixedRate(task,0,1000);
 	}
@@ -102,7 +105,9 @@ public class FTTimer extends JFrame{
 	}
 
 	private void stopTime() {
-		timer.cancel();
+		if(timer != null){
+			timer.cancel();
+		}
 	}
 
 	public static void main(String[] args) {
