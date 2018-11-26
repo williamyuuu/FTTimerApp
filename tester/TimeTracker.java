@@ -13,9 +13,9 @@ public class TimeTracker extends JFrame{
 
 	private JButton buttonStart, buttonPause;
 	private JLabel labelCount;
-	private final int RESET_TIME = 60;
-	private int displayMin = RESET_TIME/60;
-	private int displaySec = RESET_TIME%60;
+	private int RESET_TIME = 60;
+	private int displayMin;
+	private int displaySec;
 	private int secondsPassed;
 
 	private Timer timer;
@@ -30,7 +30,7 @@ public class TimeTracker extends JFrame{
 		labelCount = new JLabel();
 		//labelCount.setPreferredSize(new Dimension(100,30));
 		panel.add(labelCount);
-		displayTime();
+		firstDisplayTime();
 
 		//start 10 minute timer
 		buttonStart = new JButton("  Start Timer  ");
@@ -71,6 +71,11 @@ public class TimeTracker extends JFrame{
 	private void displayTime(){
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
 	}
+	private void firstDisplayTime(){
+		displayMin = RESET_TIME/60;
+		displaySec = RESET_TIME%60;
+		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
+	}
 
 	private void startTime() {
 			stopTime();
@@ -102,5 +107,9 @@ public class TimeTracker extends JFrame{
 		if(timer != null){
 			timer.cancel();
 		}
+	}
+
+	public void setStartTime (int x){
+		RESET_TIME = x;
 	}
 }
