@@ -10,3 +10,7 @@ Allows you to track FT Service
 Future features(?):
 - Multiple tabs/check boxes for view preference
 - Text command shortcuts
+- Next due on top
+- Custom alerts
+- Display at limit
+- Auto close when completed

@@ -1,4 +1,5 @@
 //Alpha 0.1 (a.1) Nov 08, 2018
+//main timer and restart working Nov 22, 2018
 
 import java.awt.event.*; //allows for ActionListener
 import java.awt.*;
@@ -31,19 +32,19 @@ public class FTTimer extends JFrame{
 	}
 
 	private void createView(){
-		//JPanel panel = new JPanel(); //blocks colors from showing (?)
 		getContentPane().add(panel);
 		panel.setOpaque(true);
 		panel.setBackground(Color.GREEN);
 		panel.setPreferredSize(new Dimension(400,40));
 
 		labelCount = new JLabel();
-		labelCount.setPreferredSize(new Dimension(100, 30));
+		//labelCount.setPreferredSize(new Dimension(100,30));
 		panel.add(labelCount);
 		displayTime();
 
 		//start 10 minute timer
-		buttonStart = new JButton("Start Timer");
+		buttonStart = new JButton("  Start Timer  ");
+		//find alternative to setPreferredSize
 		//buttonStart.setPreferredSize(new Dimension(100,20));
 		buttonStart.addActionListener(
 			new ActionListener() {
@@ -59,13 +60,15 @@ public class FTTimer extends JFrame{
 
 		//holds the time and cancels the timer
 		buttonPause = new JButton("Stop Timer");
+		//find alternative to setPreferredSize
+		//buttonPause.setPreferredSize(new Dimension(100,20));
 		buttonPause.addActionListener(
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					secondsPassed = 0;
 					stopTime();
-					buttonStart.setText("Start Timer");
+					buttonStart.setText("  Start Timer  ");
 					displayTime();
 					System.out.println("Timer stopped!"); //debugger
 				}
@@ -73,6 +76,7 @@ public class FTTimer extends JFrame{
 		);
 		panel.add(buttonPause);
 	}
+
 
 	private void displayTime(){
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
