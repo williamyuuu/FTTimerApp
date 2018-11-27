@@ -11,8 +11,12 @@ public class TimeTracker extends JFrame{
 
 	JPanel panel = new JPanel();
 
+
+    //Debugger instantiations
+    private int timerID;
+
 	private JButton buttonStart, buttonPause;
-	private JLabel labelCount;
+	private JLabel labelCount, labelID;
 	private int RESET_TIME = 60;
 	private int displayMin;
 	private int displaySec;
@@ -21,16 +25,24 @@ public class TimeTracker extends JFrame{
 	private Timer timer;
 	private TimerTask task;
 
+
 	public void createView(){
-		getContentPane().add(panel);
+
+		//getContentPane().add(panel);
+
 		panel.setOpaque(true);
 		panel.setBackground(Color.GREEN);
-		panel.setPreferredSize(new Dimension(400,40));
+	    //panel.setPreferredSize(new Dimension(400,40));
 
 		labelCount = new JLabel();
+
+        labelID = new JLabel(); // debugger
+        labelID.setText("Timer ID #" + timerID + "     "); //debugger
+
+        panel.add(labelID);
 		//labelCount.setPreferredSize(new Dimension(100,30));
 		panel.add(labelCount);
-		firstDisplayTime();
+		initialDisplay();
 
 		//start 10 minute timer
 		buttonStart = new JButton("  Start Timer  ");
@@ -60,7 +72,7 @@ public class TimeTracker extends JFrame{
 					stopTime();
 					buttonStart.setText("  Start Timer  ");
 					displayTime();
-					System.out.println("Timer stopped!"); //debugger
+					System.out.println("Timer #" + timerID + " stopped!"); //debugger
 				}
 			}
 		);
@@ -71,12 +83,11 @@ public class TimeTracker extends JFrame{
 	private void displayTime(){
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
 	}
-	private void firstDisplayTime(){
+	private void initialDisplay(){
 		displayMin = RESET_TIME/60;
 		displaySec = RESET_TIME%60;
 		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
 	}
-
 	private void startTime() {
 			stopTime();
 			timer = new Timer();
@@ -84,13 +95,13 @@ public class TimeTracker extends JFrame{
 			createTask();
 			timer.scheduleAtFixedRate(task,0,1000);
 	}
-
 	private void createTask() {
 		task = new TimerTask() {
 		   public void run() {
 			   displayMin = secondsPassed / 60;
 			   displaySec = secondsPassed % 60;
-			   System.out.println(secondsPassed); //displays on cmd
+			   System.out.print(secondsPassed); //displays on cmd -- debugger
+               System.out.println(" -- timer #" + timerID); //displays on cmd -- debugger
 			   displayTime();
 			   secondsPassed--;
 			   if(secondsPassed < 0){ //stops at 0
@@ -102,14 +113,15 @@ public class TimeTracker extends JFrame{
 		   } //end of run
 	   }; //end of timer task
 	}
-
 	private void stopTime() {
 		if(timer != null){
 			timer.cancel();
 		}
 	}
-
 	public void setStartTime (int x){
 		RESET_TIME = x;
 	}
+    public void setTimerNum (int x) {
+        timerID = x;
+    }
 }
