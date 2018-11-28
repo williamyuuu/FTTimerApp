@@ -9,70 +9,69 @@ import java.util.Timer;
 
 public class TimeTracker extends JFrame{
 
-	JPanel panel = new JPanel();
+    JPanel panel = new JPanel();
 
 
     //Debugger instantiations
     private int timerID;
 
-	private JButton buttonStart, buttonPause;
-	private JLabel labelCount, labelID;
-	private int RESET_TIME = 60;
-	private int displayMin;
-	private int displaySec;
-	private int secondsPassed;
+    private JButton buttonStart, buttonPause;
+    private JLabel labelCount, labelID;
+    private int RESET_TIME = 60;
+    private int displayMin;
+    private int displaySec;
+    private int secondsPassed;
 
-	private Timer timer;
-	private TimerTask task;
+    private Timer timer;
+    private TimerTask task;
 
-
-	private void createView(){
+    private void createView(){
 
 		//getContentPane().add(panel);
 
-		panel.setOpaque(true);
-		panel.setBackground(Color.GREEN);
-	    //panel.setPreferredSize(new Dimension(400,40));
+        panel.setOpaque(true);
+        panel.setBackground(Color.GREEN);
+        //panel.setPreferredSize(new Dimension(400,40));
 
-		labelCount = new JLabel();
+        labelCount = new JLabel();
 
         labelID = new JLabel(); // debugger
         labelID.setText("Timer ID #" + timerID + "     "); //debugger
 
         panel.add(labelID);
-		//labelCount.setPreferredSize(new Dimension(100,30));
-		panel.add(labelCount);
-		initialDisplay();
+        //labelCount.setPreferredSize(new Dimension(100,30));
+        panel.add(labelCount);
+        initialDisplay();
 
-		//start 10 minute timer
-		buttonStart = new JButton("Start Timer");
-		//find alternative to setPreferredSize
-		buttonStart.setPreferredSize(new Dimension(150,20));
-		buttonStart.addActionListener(
-			new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					buttonStart.setText("Restart Timer");
-					secondsPassed = RESET_TIME;
-					startTime();
+        //start 10 minute timer
+        buttonStart = new JButton("Start Timer");
+        //find alternative to setPreferredSize
+        buttonStart.setPreferredSize(new Dimension(150,20));
+        buttonStart.addActionListener(
+	       new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent e) {
+                   buttonStart.setText("Restart Timer");
+                   secondsPassed = RESET_TIME;
+                   startTime();
 
 			}
 		});
-		panel.add(buttonStart);
+        panel.add(buttonStart);
 
-		//holds the time and cancels the timer
-		buttonPause = new JButton("Stop Timer");
-		//find alternative to setPreferredSize
-		buttonPause.setPreferredSize(new Dimension(150,20));
-		buttonPause.addActionListener(
-			new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					secondsPassed = 0;
-					stopTime();
-					buttonStart.setText("Start Timer");
-					displayTime();
-					System.out.println("Timer #" + timerID + " stopped!"); //debugger
+        //holds the time and cancels the timer
+        buttonPause = new JButton("Stop Timer");
+        //find alternative to setPreferredSize
+        buttonPause.setPreferredSize(new Dimension(150,20));
+        buttonPause.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    secondsPassed = 0;
+                    stopTime();
+                    buttonStart.setText("Start Timer");
+                    displayTime();
+                    System.out.println("Timer #" + timerID + " stopped!"); //debugger
 				}
 			}
 		);
@@ -95,7 +94,7 @@ public class TimeTracker extends JFrame{
 			createTask();
 			timer.scheduleAtFixedRate(task,0,1000);
 	}
-	private void createTask() {
+    private void createTask() {
 		task = new TimerTask() {
 		   public void run() {
 			   displayMin = secondsPassed / 60;
@@ -111,9 +110,9 @@ public class TimeTracker extends JFrame{
 				   panel.setBackground(Color.YELLOW);
 			   }
 		   } //end of run
-	   }; //end of timer task
-	}
-	private void stopTime() {
+       }; //end of timer task
+    }
+    private void stopTime() {
 		if(timer != null){
 			timer.cancel();
 		}
@@ -131,5 +130,4 @@ public class TimeTracker extends JFrame{
         RESET_TIME = start;
         createView();
     }
-
 }

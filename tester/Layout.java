@@ -10,8 +10,8 @@ public class Layout{
         JFrame frame = new JFrame();
 
         //Allow users to create objects needed.. eventually
-		TimeTracker time1 = new TimeTracker();
-    	TimeTracker time2 = new TimeTracker();
+        TimeTracker time1 = new TimeTracker();
+        TimeTracker time2 = new TimeTracker();
         TimeTracker time3 = new TimeTracker();
 
 
@@ -28,10 +28,10 @@ public class Layout{
 
         //Main frame set up
         frame.setTitle("Frenzy Timer version a.1");
-		frame.setSize(500, 113);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setVisible(true);
+        frame.setSize(500, 113);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
     }
 }
