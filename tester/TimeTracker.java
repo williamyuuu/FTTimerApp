@@ -26,7 +26,7 @@ public class TimeTracker extends JFrame{
 	private TimerTask task;
 
 
-	public void createView(){
+	private void createView(){
 
 		//getContentPane().add(panel);
 
@@ -45,9 +45,9 @@ public class TimeTracker extends JFrame{
 		initialDisplay();
 
 		//start 10 minute timer
-		buttonStart = new JButton("  Start Timer  ");
+		buttonStart = new JButton("Start Timer");
 		//find alternative to setPreferredSize
-		buttonStart.setPreferredSize(new Dimension(100,20));
+		buttonStart.setPreferredSize(new Dimension(150,20));
 		buttonStart.addActionListener(
 			new ActionListener() {
 				@Override
@@ -63,14 +63,14 @@ public class TimeTracker extends JFrame{
 		//holds the time and cancels the timer
 		buttonPause = new JButton("Stop Timer");
 		//find alternative to setPreferredSize
-		buttonPause.setPreferredSize(new Dimension(100,20));
+		buttonPause.setPreferredSize(new Dimension(150,20));
 		buttonPause.addActionListener(
 			new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					secondsPassed = 0;
 					stopTime();
-					buttonStart.setText("  Start Timer  ");
+					buttonStart.setText("Start Timer");
 					displayTime();
 					System.out.println("Timer #" + timerID + " stopped!"); //debugger
 				}
@@ -118,10 +118,18 @@ public class TimeTracker extends JFrame{
 			timer.cancel();
 		}
 	}
+    /*
 	public void setStartTime (int x){
 		RESET_TIME = x;
 	}
     public void setTimerNum (int x) {
         timerID = x;
     }
+    */
+    public void setUpTimer (int id, int start) {
+        timerID = id;
+        RESET_TIME = start;
+        createView();
+    }
+
 }
