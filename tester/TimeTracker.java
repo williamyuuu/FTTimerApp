@@ -24,11 +24,8 @@ public class TimeTracker extends JFrame{
 
     private void createView(){
 
-		//getContentPane().add(panel);
-
         panel.setOpaque(true);
         panel.setBackground(Color.GREEN);
-        //panel.setPreferredSize(new Dimension(400,40));
 
         labelCount = new JLabel();
 
@@ -36,29 +33,25 @@ public class TimeTracker extends JFrame{
         labelID.setText("Timer ID #" + timerID + "     "); //debugger
 
         panel.add(labelID);
-        //labelCount.setPreferredSize(new Dimension(100,30));
         panel.add(labelCount);
         initialDisplay();
 
         //start 10 minute timer
         buttonStart = new JButton("Start Timer");
-        //find alternative to setPreferredSize
         buttonStart.setPreferredSize(new Dimension(150,20));
         buttonStart.addActionListener(
-	       new ActionListener() {
-               @Override
-               public void actionPerformed(ActionEvent e) {
-                   buttonStart.setText("Reset Timer");
-                   secondsPassed = RESET_TIME;
-                   startTime();
-
-			}
-		});
+            new ActionListener() {
+                 @Override
+                 public void actionPerformed(ActionEvent e) {
+                     buttonStart.setText("Reset Timer");
+                     secondsPassed = RESET_TIME;
+                     startTime();
+                 }
+        });
         panel.add(buttonStart);
 
         //holds the time and cancels the timer
         buttonPause = new JButton("Stop Timer");
-        //find alternative to setPreferredSize
         buttonPause.setPreferredSize(new Dimension(150,20));
         buttonPause.addActionListener(
             new ActionListener() {
@@ -74,22 +67,20 @@ public class TimeTracker extends JFrame{
 		);
 		panel.add(buttonPause);
 	}
-
-
-	private void displayTime(){
-		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
-	}
-	private void initialDisplay(){
-		displayMin = RESET_TIME/60;
-		displaySec = RESET_TIME%60;
-		labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
-	}
-	private void startTime() {
-			stopTime();
-			timer = new Timer();
-			panel.setBackground(Color.GREEN); //restarting timer resets color to GREEN
-			createTask();
-			timer.scheduleAtFixedRate(task,0,1000);
+    private void displayTime(){
+        labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
+    }
+    private void initialDisplay(){
+        displayMin = RESET_TIME/60;
+        displaySec = RESET_TIME%60;
+        labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
+    }
+    private void startTime() {
+        stopTime();
+        timer = new Timer();
+        panel.setBackground(Color.GREEN); //restarting timer resets color to GREEN
+        createTask();
+        timer.scheduleAtFixedRate(task,0,1000);
 	}
     private void createTask() {
 		task = new TimerTask() {
@@ -114,14 +105,6 @@ public class TimeTracker extends JFrame{
 			timer.cancel();
 		}
 	}
-    /*
-	public void setStartTime (int x){
-		RESET_TIME = x;
-	}
-    public void setTimerNum (int x) {
-        timerID = x;
-    }
-    */
     public void setUpTimer (int id, int start) {
         timerID = id;
         RESET_TIME = start;
