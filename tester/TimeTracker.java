@@ -1,6 +1,3 @@
-//Alpha 0.1 (a.1) Nov 08, 2018
-//main timer and restart working Nov 22, 2018
-
 import java.awt.event.*; //allows for ActionListener
 import java.awt.*;
 import javax.swing.*;
@@ -51,7 +48,7 @@ public class TimeTracker extends JFrame{
 	       new ActionListener() {
                @Override
                public void actionPerformed(ActionEvent e) {
-                   buttonStart.setText("Restart Timer");
+                   buttonStart.setText("Reset Timer");
                    secondsPassed = RESET_TIME;
                    startTime();
 

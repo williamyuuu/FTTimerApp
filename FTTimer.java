@@ -45,7 +45,7 @@ public class FTTimer extends JFrame{
 		//start 10 minute timer
 		buttonStart = new JButton("  Start Timer  ");
 		//find alternative to setPreferredSize
-		//buttonStart.setPreferredSize(new Dimension(100,20));
+		buttonStart.setPreferredSize(new Dimension(100,20));
 		buttonStart.addActionListener(
 			new ActionListener() {
 				@Override
@@ -61,7 +61,7 @@ public class FTTimer extends JFrame{
 		//holds the time and cancels the timer
 		buttonPause = new JButton("Stop Timer");
 		//find alternative to setPreferredSize
-		//buttonPause.setPreferredSize(new Dimension(100,20));
+		buttonPause.setPreferredSize(new Dimension(100,20));
 		buttonPause.addActionListener(
 			new ActionListener() {
 				@Override
