@@ -1,37 +1,37 @@
+//Alpha 0.1 (a.1) Nov 08, 2018
+//main timer and restart working Nov 22, 2018
+//Alhpa 0.2 (a.2) Nov 30, 2018
+
 import java.awt.*;
 import javax.swing.*;
 
 public class Layout{
 
-	public static void main (String[] args) {
+    public static void main (String[] args) {
 
         final int START_TIME = 60; //START_TIME set up
+        final int NUM_OF_TIMERS = 8; //The amount of timers to display
+
         //Create a frame to put all the panels in.
         JFrame frame = new JFrame();
 
-        //Allow users to create objects needed.. eventually
-        TimeTracker time1 = new TimeTracker();
-        TimeTracker time2 = new TimeTracker();
-        TimeTracker time3 = new TimeTracker();
-
-
-        //Frame layout. Create into rows instead of Border Layout
+        //Frame Grid Layout
         Container container = frame.getContentPane();
-        frame.getContentPane().add(time1.panel, BorderLayout.NORTH);
-        container.add(time2.panel, BorderLayout.CENTER);
-        container.add(time3.panel, BorderLayout.SOUTH);
+        container.setLayout(new GridLayout(0, 1, 0, 1));
 
-        //Timer setup
-        time1.setUpTimer(1, START_TIME);
-        time2.setUpTimer(2, START_TIME);
-        time3.setUpTimer(3, START_TIME);
+        for(int count = 1 ; count <= NUM_OF_TIMERS; count++) {
+            TimeTracker time = new TimeTracker();
+            time.setUpTimer(count, START_TIME);
+            container.add(time.panel);
+        }
 
         //Main frame set up
         frame.setTitle("Frenzy Timer version a.1");
         frame.setSize(500, 113);
+        frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
     }
 }
