@@ -14,6 +14,7 @@ public class TimeTracker extends JFrame{
 
     private JButton buttonStart, buttonPause;
     private JLabel labelCount, labelID;
+    private JTextField textName, textMap, textChannel;
     private int RESET_TIME = 60;
     private int displayMin;
     private int displaySec;
@@ -27,14 +28,22 @@ public class TimeTracker extends JFrame{
     private void createView(){
 
         panel.setOpaque(true);
-        panel.setBackground(Color.GREEN);
 
         labelCount = new JLabel();
+        textName = new JTextField("Name");
+        textName.setPreferredSize(new Dimension(100,20));
+        textMap = new JTextField("Map Name");
+        textMap.setPreferredSize(new Dimension(150,20));
+        textChannel = new JTextField("Ch");
+        textChannel.setPreferredSize(new Dimension(30,20));
 
         labelID = new JLabel();
         labelID.setText("Timer ID #" + timerID + "     ");
 
         panel.add(labelID); //Label on panel for TimerID
+        panel.add(textName);
+        panel.add(textMap);
+        panel.add(textChannel);
         panel.add(labelCount); //Label on panel for the timer countdown
         initialDisplay();
 
@@ -69,10 +78,11 @@ public class TimeTracker extends JFrame{
 		);
 		panel.add(buttonPause);
 	}
-    //Displays the START_TIME as a minute:second format
+    //First display (and when not running). White and reset timer display
     private void initialDisplay(){
         displayMin = RESET_TIME/60;
         displaySec = RESET_TIME%60;
+        panel.setBackground(Color.WHITE);
         labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
     }
     //Displays the current timer time as minute:second format
@@ -112,6 +122,7 @@ public class TimeTracker extends JFrame{
     private void stopTime() {
         if(timer != null){
             timer.cancel();
+            initialDisplay();
         }
     }
     //setting up a timer. Passes an ID, and changes RESET_TIME if defined

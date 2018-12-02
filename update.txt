@@ -4,3 +4,4 @@ Alpha 0.1 (a.1) Nov 08, 2018
 Alpha 0.2 (a.2) Nov 30, 2018
     Layout simplified. For loop for number of timers (8)
     Grid formatting. Undefined Rows , 1 Column
+    White for non-running timers. Resets to RESET_TIME Dec 1, 2018
