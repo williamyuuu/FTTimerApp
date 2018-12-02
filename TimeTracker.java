@@ -31,19 +31,49 @@ public class TimeTracker extends JFrame{
 
         labelCount = new JLabel();
         textName = new JTextField("Name");
+        textName.setForeground(Color.GRAY);
         textName.setPreferredSize(new Dimension(100,20));
         textMap = new JTextField("Map Name");
+        textMap.setForeground(Color.GRAY);
         textMap.setPreferredSize(new Dimension(150,20));
         textChannel = new JTextField("Ch");
-        textChannel.setPreferredSize(new Dimension(30,20));
+        textChannel.setPreferredSize(new Dimension(40,20));
+        textChannel.setForeground(Color.GRAY);
 
         labelID = new JLabel();
         labelID.setText("Timer ID #" + timerID + "     ");
 
         panel.add(labelID); //Label on panel for TimerID
         panel.add(textName);
+        textName.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (textName.getText().equals("Name")) {
+                    textName.setText("");
+                    textName.setForeground(Color.BLACK);
+                }
+            }
+        });
         panel.add(textMap);
+        textMap.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (textMap.getText().equals("Map Name")) {
+                    textMap.setText("");
+                    textMap.setForeground(Color.BLACK);
+                }
+            }
+        });
         panel.add(textChannel);
+        textChannel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (textChannel.getText().equals("Ch")) {
+                    textChannel.setText("");
+                    textChannel.setForeground(Color.BLACK);
+                }
+            }
+        });
         panel.add(labelCount); //Label on panel for the timer countdown
         initialDisplay();
 
