@@ -19,7 +19,7 @@ public class Layout{
         Container container = frame.getContentPane();
         container.setLayout(new GridLayout(0, 1, 0, 1));
 
-        //For loop in creating timer objects 
+        //For loop in creating timer objects
         for(int count = 1 ; count <= NUM_OF_TIMERS; count++) {
             TimeTracker timer = new TimeTracker();
             timer.setUpTimer(count, START_TIME);
