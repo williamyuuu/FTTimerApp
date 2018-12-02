@@ -69,7 +69,7 @@ public class TimeTracker extends JFrame{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     secondsPassed = 0;
-                    stopTime();
+                    resetTime();
                     buttonStart.setText("Start Timer");
                     displayTime();
                     System.out.println("Timer #" + timerID + " stopped!"); //debugger
@@ -89,14 +89,6 @@ public class TimeTracker extends JFrame{
     private void displayTime(){
         labelCount.setText(String.format("%02d:%02d",displayMin,displaySec));
     }
-    //stops running timer. Creates a new timer at green and starts
-    private void startTime() {
-        stopTime();
-        timer = new Timer();
-        panel.setBackground(Color.GREEN); //restarting timer resets color to GREEN
-        createTask();
-        timer.scheduleAtFixedRate(task,0,1000);
-	}
     //Task for timer. The rules for running the timer task
     private void createTask() {
         task = new TimerTask() {
@@ -113,16 +105,33 @@ public class TimeTracker extends JFrame{
                     stopTime(); //Upon timer completion, the timer will stop
                     panel.setBackground(Color.RED);
                 } else if(secondsPassed < RESET_TIME*0.2) {
-                    panel.setBackground(Color.YELLOW);
+                    panel.setBackground(Color.ORANGE);
                 }
             } // End of run
         }; ///// End of timer task
     } ////////// End of createTask method
+
     //If there is a timer, cancel it.
+    //stops running timer. Creates a new timer at green and starts
+    private void startTime() {
+        stopTime();
+        timer = new Timer();
+        panel.setBackground(Color.GREEN); //restarting timer resets color to GREEN
+        createTask();
+        timer.scheduleAtFixedRate(task,0,1000);
+	}
+    //cancels timer
     private void stopTime() {
         if(timer != null){
             timer.cancel();
+        }
+    }
+    //stops timer and resets to non-running timer
+    private void resetTime() {
+        if(timer != null){
+            timer.cancel();
             initialDisplay();
+            System.out.println("initialDisplay");
         }
     }
     //setting up a timer. Passes an ID, and changes RESET_TIME if defined
