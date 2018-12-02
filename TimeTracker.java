@@ -22,6 +22,8 @@ public class TimeTracker extends JFrame{
     private Timer timer;
     private TimerTask task;
 
+    //Creates the panel for the whole timer.
+    //Timer ID, Timer countdown, JButton Start, JButton Stop
     private void createView(){
 
         panel.setOpaque(true);
@@ -29,14 +31,14 @@ public class TimeTracker extends JFrame{
 
         labelCount = new JLabel();
 
-        labelID = new JLabel(); // debugger
-        labelID.setText("Timer ID #" + timerID + "     "); //debugger
+        labelID = new JLabel();
+        labelID.setText("Timer ID #" + timerID + "     ");
 
-        panel.add(labelID);
-        panel.add(labelCount);
+        panel.add(labelID); //Label on panel for TimerID
+        panel.add(labelCount); //Label on panel for the timer countdown
         initialDisplay();
 
-        //start 10 minute timer
+        //Button that starts timer from RESET_TIME. Button renames to "Reset Timer"
         buttonStart = new JButton("Start Timer");
         buttonStart.setPreferredSize(new Dimension(150,20));
         buttonStart.addActionListener(
