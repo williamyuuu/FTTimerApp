@@ -28,14 +28,85 @@ public class TimeTracker extends JFrame{
     private void createView(){
 
         panel.setOpaque(true);
+        Color GREY = new Color(224, 224, 224);
 
         labelCount = new JLabel();
         textName = new JTextField("Name");
+        textName.setForeground(Color.GRAY);
         textName.setPreferredSize(new Dimension(100,20));
+        textName.setOpaque(false);
+        textName.setBackground(null);
+        textName.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
+        textName.addMouseListener(
+            new MouseListener() {
+                 @Override
+                 public void mouseEntered(MouseEvent e) {
+                     textName.setOpaque(true);
+                     textName.setBackground(GREY);
+                     textName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                 }
+                 public void mouseExited(MouseEvent e) {
+                     textName.setOpaque(false);
+                     textName.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
+                     if(textName.getText().equals("")) {
+                         textName.setForeground(Color.GRAY);
+                         textName.setText("Name");
+                     }
+
+                 }
+                 public void mouseReleased(MouseEvent e) {}
+                 public void mousePressed(MouseEvent e) {}
+                 public void mouseClicked(MouseEvent e) {
+                     if(textName.getText().equals("Name")) {
+                         textName.setText("");
+                         textName.setForeground(Color.BLACK);
+                     }
+                 }
+        });
         textMap = new JTextField("Map Name");
         textMap.setPreferredSize(new Dimension(150,20));
+        textMap.setOpaque(false);
+        textMap.setBackground(null);
+        textMap.addMouseListener(
+            new MouseListener() {
+                 @Override
+                 public void mouseEntered(MouseEvent e) {
+                     textMap.setOpaque(true);
+                     textMap.setBackground(GREY);
+                     textMap.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                 }
+                 public void mouseExited(MouseEvent e) {
+                     textMap.setOpaque(false);
+                     textMap.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
+                 }
+                 public void mouseReleased(MouseEvent e) {}
+                 public void mousePressed(MouseEvent e) {}
+                 public void mouseClicked(MouseEvent e) {
+                     textMap.setText("");
+                 }
+        });
         textChannel = new JTextField("Ch");
         textChannel.setPreferredSize(new Dimension(40,20));
+        textChannel.setOpaque(false);
+        textChannel.setBackground(null);
+        textChannel.addMouseListener(
+            new MouseListener() {
+                 @Override
+                 public void mouseEntered(MouseEvent e) {
+                     textChannel.setOpaque(true);
+                     textChannel.setBackground(GREY);
+                     textChannel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                 }
+                 public void mouseExited(MouseEvent e) {
+                     textChannel.setOpaque(false);
+                     textChannel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
+                 }
+                 public void mouseReleased(MouseEvent e) {}
+                 public void mousePressed(MouseEvent e) {}
+                 public void mouseClicked(MouseEvent e) {
+                     textChannel.setText("");
+                 }
+        });
 
         labelID = new JLabel();
         labelID.setText("Timer ID #" + timerID + "     ");
