@@ -3,12 +3,10 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.TimerTask;
 import java.util.Timer;
-import java.util.regex.*;
 
 public class TimeTracker extends JFrame{
 
     JPanel panel = new JPanel();
-    Color GREY = new Color(224, 224, 224);
 
 
     //Debugger instantiations
@@ -29,34 +27,15 @@ public class TimeTracker extends JFrame{
     //Timer ID, Timer countdown, JButton Start, JButton Stop
     private void createView(){
 
-        mousehandler mousehandler = new mousehandler();
-
         panel.setOpaque(true);
 
         labelCount = new JLabel();
         textName = new JTextField("Name");
-        textName.setForeground(Color.GRAY);
         textName.setPreferredSize(new Dimension(100,20));
-        textName.setOpaque(false);
-        textName.setBackground(null);
-        textName.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
-        textName.addMouseListener(mousehandler);
-
         textMap = new JTextField("Map Name");
-        textMap.setForeground(Color.GRAY);
         textMap.setPreferredSize(new Dimension(150,20));
-        textMap.setOpaque(false);
-        textMap.setBackground(null);
-        textMap.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
-        textMap.addMouseListener(mousehandler);
-
         textChannel = new JTextField("Ch");
-        textChannel.setForeground(Color.GRAY);
         textChannel.setPreferredSize(new Dimension(40,20));
-        textChannel.setOpaque(false);
-        textChannel.setBackground(null);
-        textChannel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
-        textChannel.addMouseListener(mousehandler);
 
         labelID = new JLabel();
         labelID.setText("Timer ID #" + timerID + "     ");
@@ -93,7 +72,7 @@ public class TimeTracker extends JFrame{
                     resetTime();
                     buttonStart.setText("Start Timer");
                     displayTime();
-                    //System.out.println("Timer #" + timerID + " stopped!"); //debugger
+                    System.out.println("Timer #" + timerID + " stopped!"); //debugger
 				}
 			}
 		);
@@ -117,8 +96,8 @@ public class TimeTracker extends JFrame{
                 //Formats the seconds as int into a minute:seconds format
                 displayMin = secondsPassed / 60;
                 displaySec = secondsPassed % 60;
-                //System.out.print(secondsPassed); //displays on cmd -- debugger
-                //System.out.println(" -- timer #" + timerID); //displays on cmd -- debugger
+                System.out.print(secondsPassed); //displays on cmd -- debugger
+                System.out.println(" -- timer #" + timerID); //displays on cmd -- debugger
                 displayTime();
                 secondsPassed--;
                 //Timer color alerts. Red when done, Yellow at 20% completion
@@ -152,6 +131,7 @@ public class TimeTracker extends JFrame{
         if(timer != null){
             timer.cancel();
             initialDisplay();
+            System.out.println("initialDisplay");
         }
     }
     //setting up a timer. Passes an ID, and changes RESET_TIME if defined
@@ -161,39 +141,4 @@ public class TimeTracker extends JFrame{
                             //But I want this for future user time input settings
         createView();
     }
-    private class mousehandler implements MouseListener {
-
-        JTextField textField;
-        String placeholder, compare;
-
-        public void mouseEntered(MouseEvent e) {
-            textField = (JTextField) e.getComponent();
-            textField.setOpaque(true);
-            textField.setBackground(GREY);
-            textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-            compare = textField.getText();
-            if(compare.equals("Name") || compare.equals("Map Name") || compare.equals("Ch")) {
-                placeholder = compare;
-            }
-
-        }
-        public void mouseExited(MouseEvent e) {
-            textField = (JTextField) e.getComponent();
-            textField.setOpaque(false);
-            textField.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
-            if(textField.getText().equals("")) {
-                textField.setForeground(Color.GRAY);
-                textField.setText(placeholder);
-            }
-        }
-        public void mouseReleased(MouseEvent e) {}
-        public void mousePressed(MouseEvent e) {}
-        public void mouseClicked(MouseEvent e) {
-            textField = (JTextField) e.getComponent();
-            if(textField.getText().equals(placeholder)) {
-                textField.setText("");
-                textField.setForeground(Color.BLACK);
-            }
-        }
-    } //// End of mouseHandler
 } ////////// End of TimeTracker

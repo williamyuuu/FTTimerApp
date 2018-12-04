@@ -6,3 +6,6 @@ tester*
 
 # Notes for progress
 note*
+
+# File DS_Store not be pushed
+*.DS_Store
