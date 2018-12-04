@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.TimerTask;
 import java.util.Timer;
-import java.util.regex.*;
+//import java.util.regex.*; //Might be used for futuer KeyListener
 
 public class TimeTracker extends JFrame{
 
@@ -161,22 +161,28 @@ public class TimeTracker extends JFrame{
                             //But I want this for future user time input settings
         createView();
     }
+
+    //Handles all the mouselisteners -- for the JTextFields
     private class mousehandler implements MouseListener {
 
         JTextField textField;
         String placeholder, compare;
 
+
+        //mouse enters and creates edit display, black border and GREY background
         public void mouseEntered(MouseEvent e) {
             textField = (JTextField) e.getComponent();
             textField.setOpaque(true);
             textField.setBackground(GREY);
             textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             compare = textField.getText();
+            //if text within is one of the following, set as placeholder
             if(compare.equals("Name") || compare.equals("Map Name") || compare.equals("Ch")) {
                 placeholder = compare;
             }
 
         }
+        //mouse exiting as empty will return placeholder to place
         public void mouseExited(MouseEvent e) {
             textField = (JTextField) e.getComponent();
             textField.setOpaque(false);
@@ -188,6 +194,7 @@ public class TimeTracker extends JFrame{
         }
         public void mouseReleased(MouseEvent e) {}
         public void mousePressed(MouseEvent e) {}
+        //When clicked, placeholder will be emptied to start typing in black font
         public void mouseClicked(MouseEvent e) {
             textField = (JTextField) e.getComponent();
             if(textField.getText().equals(placeholder)) {
