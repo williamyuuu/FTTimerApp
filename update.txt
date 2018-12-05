@@ -7,4 +7,5 @@ Alpha 0.2 (a.2) Nov 30, 2018
 
     White for non-running timers. Resets to RESET_TIME Dec 1, 2018
 
-    
+    Incomplete placeholders. Separate handler class.
+    compressed textfield formatting into a method Dec 5, 2018
