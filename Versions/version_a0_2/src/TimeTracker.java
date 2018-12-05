@@ -3,11 +3,12 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.TimerTask;
 import java.util.Timer;
+//import java.util.regex.*; //Might be used for futuer KeyListener
 
 public class TimeTracker extends JFrame{
 
     JPanel panel = new JPanel();
-
+    MouseHandler mousehandler = new MouseHandler();
 
     //Debugger instantiations
     private int timerID;
@@ -31,11 +32,13 @@ public class TimeTracker extends JFrame{
 
         labelCount = new JLabel();
         textName = new JTextField("Name");
-        textName.setPreferredSize(new Dimension(100,20));
+        createTextField(textName, 100, 20);
+
         textMap = new JTextField("Map Name");
-        textMap.setPreferredSize(new Dimension(150,20));
+        createTextField(textMap, 150, 20);
+
         textChannel = new JTextField("Ch");
-        textChannel.setPreferredSize(new Dimension(40,20));
+        createTextField(textChannel, 40, 20);
 
         labelID = new JLabel();
         labelID.setText("Timer ID #" + timerID + "     ");
@@ -72,7 +75,7 @@ public class TimeTracker extends JFrame{
                     resetTime();
                     buttonStart.setText("Start Timer");
                     displayTime();
-                    System.out.println("Timer #" + timerID + " stopped!"); //debugger
+                    //System.out.println("Timer #" + timerID + " stopped!"); //debugger
 				}
 			}
 		);
@@ -96,8 +99,8 @@ public class TimeTracker extends JFrame{
                 //Formats the seconds as int into a minute:seconds format
                 displayMin = secondsPassed / 60;
                 displaySec = secondsPassed % 60;
-                System.out.print(secondsPassed); //displays on cmd -- debugger
-                System.out.println(" -- timer #" + timerID); //displays on cmd -- debugger
+                //System.out.print(secondsPassed); //displays on cmd -- debugger
+                //System.out.println(" -- timer #" + timerID); //displays on cmd -- debugger
                 displayTime();
                 secondsPassed--;
                 //Timer color alerts. Red when done, Yellow at 20% completion
@@ -111,6 +114,16 @@ public class TimeTracker extends JFrame{
         }; ///// End of timer task
     } ////////// End of createTask method
 
+    //Formats the textfield in which text starts grey with transparent background
+
+    private void createTextField(JTextField textfield, int width, int height){
+        textfield.setForeground(Color.GRAY);
+        textfield.setPreferredSize(new Dimension(width, height));
+        textfield.setOpaque(false);
+        textfield.setBackground(null);
+        textfield.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
+        textfield.addMouseListener(mousehandler);
+    }
     //If there is a timer, cancel it.
     //stops running timer. Creates a new timer at green and starts
     private void startTime() {
@@ -131,7 +144,6 @@ public class TimeTracker extends JFrame{
         if(timer != null){
             timer.cancel();
             initialDisplay();
-            System.out.println("initialDisplay");
         }
     }
     //setting up a timer. Passes an ID, and changes RESET_TIME if defined
