@@ -4,8 +4,8 @@
 # Java tester files
 tester*
 
-# Notes for progress
-note*
+# Notes files
+*.notes
 
 # File DS_Store not be pushed
 *.DS_Store
