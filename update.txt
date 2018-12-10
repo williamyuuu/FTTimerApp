@@ -1,7 +1,9 @@
 Alpha 0.1 (a.1) Nov 08, 2018
+----------------------------
     main timer and restart working Nov 22, 2018
     Split code into display and logic, runs 3 timers Nov 27, 2018
 Alpha 0.2 (a.2) Nov 30, 2018
+----------------------------
     Layout simplified. For loop for number of timers (8)
     Grid formatting. Undefined Rows , 1 Column
 
@@ -9,3 +11,8 @@ Alpha 0.2 (a.2) Nov 30, 2018
 
     Incomplete placeholders. Separate handler class.
     compressed textfield formatting into a method Dec 5, 2018
+Alpha 0.3 (a.3) Dec 5, 2018
+----------------------------
+Placeholders to be complete. Key and Mouse Handlers
+Appropriate placeholder words when exited.
+----------------------------

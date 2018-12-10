@@ -15,7 +15,7 @@ public class TimeTracker extends JFrame{
 
     private JButton buttonStart, buttonPause;
     private JLabel labelCount, labelID;
-    private JTextField textName, textMap, textChannel;
+    private JTextField textName, textMap, textChannel, textPaid;
     private int RESET_TIME = 60;
     private int displayMin;
     private int displaySec;
@@ -31,6 +31,8 @@ public class TimeTracker extends JFrame{
         panel.setOpaque(true);
 
         labelCount = new JLabel();
+        Choice choice = new Choice();
+
         textName = new JTextField("Name");
         createTextField(textName, 100, 20);
 
@@ -40,6 +42,9 @@ public class TimeTracker extends JFrame{
         textChannel = new JTextField("Ch");
         createTextField(textChannel, 40, 20);
 
+        textPaid = new JTextField("Paid");
+        createTextField(textPaid, 50, 20);
+
         labelID = new JLabel();
         labelID.setText("Timer ID #" + timerID + "     ");
 
@@ -47,12 +52,13 @@ public class TimeTracker extends JFrame{
         panel.add(textName);
         panel.add(textMap);
         panel.add(textChannel);
+        panel.add(textPaid);
         panel.add(labelCount); //Label on panel for the timer countdown
         initialDisplay();
 
         //Button that starts timer from RESET_TIME. Button renames to "Reset Timer"
         buttonStart = new JButton("Start Timer");
-        buttonStart.setPreferredSize(new Dimension(150,20));
+        buttonStart.setPreferredSize(new Dimension(100,20));
         buttonStart.addActionListener(
             new ActionListener() {
                  @Override
@@ -66,7 +72,7 @@ public class TimeTracker extends JFrame{
 
         //Timer will stop. Display freezes at stopped number/color
         buttonPause = new JButton("Stop Timer");
-        buttonPause.setPreferredSize(new Dimension(150,20));
+        buttonPause.setPreferredSize(new Dimension(100,20));
         buttonPause.addActionListener(
             new ActionListener() {
                 @Override

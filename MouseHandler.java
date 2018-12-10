@@ -17,7 +17,8 @@ public class MouseHandler implements MouseListener {
         textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         compare = textField.getText();
         //if text within is one of the following, set as placeholder
-        if(compare.equals("Name") || compare.equals("Map Name") || compare.equals("Ch")) {
+        if(compare.equals("Name") || compare.equals("Map Name") || compare.equals("Ch")
+            || compare.equals("Paid")) {
             placeholder = compare;
         }
 
