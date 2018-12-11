@@ -129,7 +129,9 @@ public class TimeTracker extends JFrame{
         textfield.setOpaque(false);
         textfield.setBackground(null);
         textfield.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
+        //Mouse and Key Listeners to the same handler file
         textfield.addMouseListener(texthandler);
+        textfield.addKeyListener(texthandler);
         textfield.addKeyListener(searchhandler);
     }
     //If there is a timer, cancel it.

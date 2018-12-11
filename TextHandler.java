@@ -26,15 +26,21 @@ public class TextHandler implements MouseListener, KeyListener{
         textField = (JTextField) e.getComponent();
         editText(textField);
     }
+
     public void keyPressed(KeyEvent e){
-        if(e.getKeyCode() == 10) {
-            textField = (JTextField) e.getComponent();
+        textField = (JTextField) e.getComponent();
+        textField.setForeground(Color.BLACK);
+        if(e.getKeyCode() == 10){
             submitText(textField);
+        }
+        if(e.getKeyCode() != 10){
+            editText(textField);
         }
     }
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
 
+//TextField Methods
     private void hoverText(JTextField textField) {
         textField.setOpaque(true);
         textField.setBackground(GREY);
@@ -48,8 +54,8 @@ public class TextHandler implements MouseListener, KeyListener{
     }
     private void editText(JTextField textField) {
         if(textField.getText().equals(placeholder)) {
+            textField.setCaretPosition(0);
             textField.setText("");
-            textField.setForeground(Color.BLACK);
         }
     }
     private void submitText(JTextField textField) {
@@ -58,6 +64,7 @@ public class TextHandler implements MouseListener, KeyListener{
         if(textField.getText().equals("")) {
             textField.setForeground(Color.GRAY);
             textField.setText(placeholder);
+            textField.setCaretPosition(0);
         }
     }
 }
