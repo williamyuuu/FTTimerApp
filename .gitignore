@@ -1,5 +1,5 @@
 # Java class files
-*.class
+/*.class
 
 # Java tester files
 tester*

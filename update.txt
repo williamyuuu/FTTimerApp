@@ -13,6 +13,8 @@ Alpha 0.2 (a.2) Nov 30, 2018
     compressed textfield formatting into a method Dec 5, 2018
 Alpha 0.3 (a.3) Dec 5, 2018
 ----------------------------
+    MouseListeners and KeyListeners implemented in single textHandler File Dec, 10, 2018
+    
 Placeholders to be complete. Key and Mouse Handlers
 Appropriate placeholder words when exited.
 ----------------------------
