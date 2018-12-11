@@ -8,7 +8,7 @@ public class SearchHandler implements KeyListener {
     JComboBox comboBox;
 
     public void keyPressed(KeyEvent e){
-        System.out.println(e.getKeyCode());
+        //System.out.println(e.getKeyCode()); //prints keycode cmd
     }
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
