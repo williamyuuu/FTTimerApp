@@ -2,12 +2,11 @@ import java.awt.event.*; //allows for ActionListener
 import java.awt.*;
 import javax.swing.*;
 
-public class MouseHandler implements MouseListener {
+public class TextHandler implements MouseListener, KeyListener{
 
     JTextField textField;
     String placeholder, compare;
     Color GREY = new Color(224, 224, 224); //Custom lighter gray color
-
 
     //mouse enters and creates edit display, black border and GREY background
     public void mouseEntered(MouseEvent e) {
@@ -43,4 +42,9 @@ public class MouseHandler implements MouseListener {
             textField.setForeground(Color.BLACK);
         }
     }
+    public void keyPressed(KeyEvent e){
+        System.out.println(e.getKeyCode());
+    }
+    public void keyReleased(KeyEvent e){}
+    public void keyTyped(KeyEvent e){}
 }
