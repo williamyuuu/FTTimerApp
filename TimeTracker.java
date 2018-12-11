@@ -8,7 +8,8 @@ import java.util.Timer;
 public class TimeTracker extends JFrame{
 
     JPanel panel = new JPanel();
-    MouseHandler mousehandler = new MouseHandler();
+    TextHandler texthandler = new TextHandler();
+    SearchHandler searchhandler = new SearchHandler();
 
     //Debugger instantiations
     private int timerID;
@@ -31,7 +32,7 @@ public class TimeTracker extends JFrame{
         panel.setOpaque(true);
 
         labelCount = new JLabel();
-        Choice choice = new Choice();
+        //Choice choice = new Choice();
 
         textName = new JTextField("Name");
         createTextField(textName, 100, 20);
@@ -128,7 +129,8 @@ public class TimeTracker extends JFrame{
         textfield.setOpaque(false);
         textfield.setBackground(null);
         textfield.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
-        textfield.addMouseListener(mousehandler);
+        textfield.addMouseListener(texthandler);
+        textfield.addKeyListener(searchhandler);
     }
     //If there is a timer, cancel it.
     //stops running timer. Creates a new timer at green and starts
