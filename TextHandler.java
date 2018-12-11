@@ -24,7 +24,9 @@ public class TextHandler implements MouseListener, KeyListener{
     //When clicked, placeholder will be emptied to start typing in black font
     public void mouseClicked(MouseEvent e) {
         textField = (JTextField) e.getComponent();
-        editText(textField);
+        if(textField.getText().equals(placeholder)) {
+            textField.setCaretPosition(0);
+        }
     }
 
     public void keyPressed(KeyEvent e){
