@@ -7,23 +7,22 @@ import java.util.Timer;
 
 public class TimeTracker extends JFrame{
 
+    //Objects
     JPanel panel = new JPanel();
     TextHandler texthandler = new TextHandler();
     SearchHandler searchhandler = new SearchHandler();
+    private Timer timer;
+    private TimerTask task;
 
     //Debugger instantiations
     private int timerID;
 
+    private int RESET_TIME = 60;
     private JButton buttonStart, buttonPause;
     private JLabel labelCount, labelID;
     private JTextField textName, textMap, textChannel, textPaid;
-    private int RESET_TIME = 60;
-    private int displayMin;
-    private int displaySec;
-    private int secondsPassed;
+    private int displayMin, displaySec, secondsPassed;
 
-    private Timer timer;
-    private TimerTask task;
 
     //Creates the panel for the whole timer.
     //Timer ID, Timer countdown, JButton Start, JButton Stop
@@ -34,21 +33,20 @@ public class TimeTracker extends JFrame{
         labelCount = new JLabel();
         //Choice choice = new Choice();
 
+        //User input JTextFields
         textName = new JTextField("Name");
         createTextField(textName, 100, 20);
-
         textMap = new JTextField("Map Name");
         createTextField(textMap, 150, 20);
-
         textChannel = new JTextField("Ch");
         createTextField(textChannel, 40, 20);
-
         textPaid = new JTextField("Paid");
         createTextField(textPaid, 50, 20);
 
         labelID = new JLabel();
-        labelID.setText("Timer ID #" + timerID + "     ");
+        labelID.setText("Timer ID #" + timerID + "   ");
 
+        //Adding onto the panel
         panel.add(labelID); //Label on panel for TimerID
         panel.add(textName);
         panel.add(textMap);
