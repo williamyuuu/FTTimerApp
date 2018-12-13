@@ -2,9 +2,9 @@ import java.awt.event.*; //allows for ActionListener
 import java.awt.*;
 import javax.swing.*;
 
-public class SearchHandler implements KeyListener{
+public class SearchMapHandler implements KeyListener{
 
-    JTextField textField;
+    JTextField textfield, textSuper;
     JComboBox comboBox;
 
     //read a .db file
@@ -12,10 +12,7 @@ public class SearchHandler implements KeyListener{
     //if data within array matches the data that the user types, send out combobox
     //suggestions will be displayed
 
-    //** how do I make this textfield specific?
-    public void keyPressed(KeyEvent e){
-        //System.out.println(e.getKeyCode()); //prints keycode cmd
-    }
+    public void keyPressed(KeyEvent e){}
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
 
