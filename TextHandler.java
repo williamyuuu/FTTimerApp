@@ -6,7 +6,7 @@ public class TextHandler implements MouseListener, KeyListener{
 
     JTextField textField;
     String placeholder, compare;
-    Color GREY = new Color(224, 224, 224); //Custom lighter gray color
+    Color BGREY = new Color(224, 224, 224); //Custom lighter gray color
 
     //mouse enters and creates edit display, black border and GREY background
     public void mouseEntered(MouseEvent e) {
@@ -28,28 +28,42 @@ public class TextHandler implements MouseListener, KeyListener{
             textField.setCaretPosition(0);
         }
     }
-
+    //KeyListeners
+    //The texthandlers for listening to if user presses certain keys
     public void keyPressed(KeyEvent e){
+        //8 = backspace 16=shift 37-40=arrows caps=20 space=32
         textField = (JTextField) e.getComponent();
         textField.setForeground(Color.BLACK);
         if(e.getKeyCode() == 10){
             submitText(textField);
         }
-        if(e.getKeyCode() != 10){
+    }
+    public void keyReleased(KeyEvent e){
+        textField = (JTextField) e.getComponent();
+        if(e.getKeyCode() == 8){
+            if(textField.getText().equals("")) {
+                textField.setForeground(Color.GRAY);
+                textField.setText("...");
+                textField.setCaretPosition(0);
+            }
+        }
+    }
+    public void keyTyped(KeyEvent e){
+        textField = (JTextField) e.getComponent();
+        textField.setForeground(Color.BLACK);
+        if((e.getKeyCode() != 10) && (e.getKeyCode() != 8)){
             editText(textField);
         }
     }
-    public void keyReleased(KeyEvent e){}
-    public void keyTyped(KeyEvent e){}
 
 //TextField Methods
     private void hoverText(JTextField textField) {
         textField.setOpaque(true);
-        textField.setBackground(GREY);
+        textField.setBackground(BGREY);
         textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         compare = textField.getText();
         //if text within is one of the following, set as placeholder
-        if(compare.equals("Name") || compare.equals("Map Name") || compare.equals("Ch")
+        if(compare.equals("...") || compare.equals("Map Name") || compare.equals("Ch")
             || compare.equals("Paid")) {
             placeholder = compare;
         }
