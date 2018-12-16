@@ -10,17 +10,17 @@ public class TimeTracker extends JFrame{
     //Objects
     JPanel panel = new JPanel();
     TextHandler texthandler = new TextHandler();
-    SearchHandler searchhandler = new SearchHandler();
+    SearchMapHandler maphandler = new SearchMapHandler();
     private Timer timer;
     private TimerTask task;
 
     //Debugger instantiations
     private int timerID;
 
+    private JTextField textName, textMap, textChannel, textPaid;
     private int RESET_TIME = 60;
     private JButton buttonStart, buttonPause;
     private JLabel labelCount, labelID;
-    private JTextField textName, textMap, textChannel, textPaid;
     private int displayMin, displaySec, secondsPassed;
 
 
@@ -34,13 +34,13 @@ public class TimeTracker extends JFrame{
         //Choice choice = new Choice();
 
         //User input JTextFields
-        textName = new JTextField("Name");
+        textName = new JTextField("...");
         createTextField(textName, 100, 20);
-        textMap = new JTextField("Map Name");
+        textMap = new JTextField("...");
         createTextField(textMap, 150, 20);
-        textChannel = new JTextField("Ch");
+        textChannel = new JTextField("...");
         createTextField(textChannel, 40, 20);
-        textPaid = new JTextField("Paid");
+        textPaid = new JTextField("...");
         createTextField(textPaid, 50, 20);
 
         labelID = new JLabel();
@@ -130,7 +130,10 @@ public class TimeTracker extends JFrame{
         //Mouse and Key Listeners to the same handler file
         textfield.addMouseListener(texthandler);
         textfield.addKeyListener(texthandler);
-        textfield.addKeyListener(searchhandler);
+        //Only searches for maps if typed into map textfield
+        if(textfield.equals(textMap)){
+            textfield.addKeyListener(maphandler);
+        }
     }
     //If there is a timer, cancel it.
     //stops running timer. Creates a new timer at green and starts
@@ -160,5 +163,10 @@ public class TimeTracker extends JFrame{
         RESET_TIME = start; //Technically don't need this if timer always 60
                             //But I want this for future user time input settings
         createView();
+    }
+    public void textWhich (JTextField textfield) {
+        if(textfield.equals(textName)) {
+            System.out.println("wew, text name");
+        }
     }
 } ////////// End of TimeTracker
