@@ -25,13 +25,21 @@ public class SearchMapHandler implements KeyListener{
         comboBox.setBorder(null);
         comboBox.setOpaque(false);
         comboBox.setBounds(25, 19, 268, 37);
-        for(String string : mapList) {
-            textfield.add(comboBox);
-            comboBox.addItem(string);
-            comboBox.showPopup();
+        //shows up even when it doesn't match
+        if(textfield.getText().equals("...")){
+            comboBox.removeAllItems();
+            comboBox.hidePopup();
+        }
+        if(textfield.getText().length() > 0){
+            for(String string : mapList) {
+                if(string.toLowerCase().startsWith(textfield.getText().toLowerCase())) {
+                    textfield.add(comboBox);
+                    comboBox.addItem(string);
+                    comboBox.showPopup();
+                }
+            }
         }
     }
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
-
 }
