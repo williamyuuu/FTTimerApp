@@ -8,6 +8,7 @@ public class TextHandler implements MouseListener, KeyListener{
     String placeholder, compare;
     Color BGREY = new Color(224, 224, 224); //Custom lighter gray color
     int[] oKeys = {16, 37, 38, 39, 40, 20, 10};
+    boolean omit = false;
 
     //mouse enters and creates edit display, black border and GREY background
     public void mouseEntered(MouseEvent e) {
@@ -34,8 +35,13 @@ public class TextHandler implements MouseListener, KeyListener{
     public void keyPressed(KeyEvent e){
         //8 = backspace 16=shift 37-40=arrows caps=20 space=32
         textfield = (JTextField) e.getComponent();
-        if((e.getKeyCode() != oKeys[0]) && (e.getKeyCode() != oKeys[1]) && (e.getKeyCode() != oKeys[2])
-                && (e.getKeyCode() != oKeys[3]) && (e.getKeyCode() != oKeys[4]) && (e.getKeyCode() != oKeys[5])){
+        int value = e.getKeyCode();
+        for(int var : oKeys) {
+            if(value == var) {
+                omit = true;
+            }
+        }
+        if(!omit){
             textfield.setForeground(Color.BLACK);
         }
         if(e.getKeyCode() == 10){
