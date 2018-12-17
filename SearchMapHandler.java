@@ -44,13 +44,28 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             firstTime = false;
         }
 
+        //keycode 38 is up arrow
         if(e.getKeyCode() == 38) {
-            System.out.println("Keycode 38");
+            int x = comboBox.getSelectedIndex();
+            if(x > 0){
+                comboBox.setSelectedIndex(x - 1);
+            }
+            //textfield.add(comboBox);
+            //comboBox.showPopup();
         }
+        //keycode 40 is down arrow
         else if (e.getKeyCode() == 40) {
-            System.out.println("Keycode 40");
+            int x = comboBox.getSelectedIndex();
+            int y = comboBox.getItemCount();
+            if(x + 1 < y){
+                comboBox.setSelectedIndex(x + 1);
+            }
+            else {
+                comboBox.setSelectedIndex(0);
+            }
+            //textfield.add(comboBox);
+            //comboBox.showPopup();
         }
-
     }
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
@@ -89,6 +104,14 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             comboBox.setBorder(null);
             comboBox.setOpaque(false);
             comboBox.setBounds(25, 19, 268, 37);
+
+            disableKeys(textfield.getInputMap());
             //textfield.add(comboBox);
+    }
+    private void disableKeys(InputMap inputMap) {
+        String[] keys = {"UP", "DOWN"};
+        for (String key : keys) {
+            inputMap.put(KeyStroke.getKeyStroke(key), "none");
+        }
     }
 }
