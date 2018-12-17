@@ -7,7 +7,7 @@ public class TextHandler implements MouseListener, KeyListener{
     JTextField textfield;
     String placeholder, compare;
     Color BGREY = new Color(224, 224, 224); //Custom lighter gray color
-    int[] oKeys = {16, 37, 38, 39, 40, 20, 10};
+    int[] oKeys = {16, 37, 38, 39, 40, 20, 10}; //Omitted keys.
     boolean omit = false;
 
     //mouse enters and creates edit display, black border and GREY background
@@ -35,6 +35,7 @@ public class TextHandler implements MouseListener, KeyListener{
     public void keyPressed(KeyEvent e){
         //8 = backspace 16=shift 37-40=arrows caps=20 space=32
         textfield = (JTextField) e.getComponent();
+        //Omitted keys will not change the textfield forground color
         int value = e.getKeyCode();
         for(int var : oKeys) {
             if(value == var) {
@@ -44,10 +45,12 @@ public class TextHandler implements MouseListener, KeyListener{
         if(!omit){
             textfield.setForeground(Color.BLACK);
         }
+        //keycode 10 is enter. Enter will submit the text
         if(e.getKeyCode() == 10){
             submitText(textfield);
         }
     }
+    //Delete or Enter key of an empty textfield will replace with placeholder
     public void keyReleased(KeyEvent e){
         textfield = (JTextField) e.getComponent();
         if((e.getKeyCode() == 8) || e.getKeyCode() == 10){
@@ -58,6 +61,7 @@ public class TextHandler implements MouseListener, KeyListener{
             }
         }
     }
+    //if keys are not delete or enter, textfield will go into edit mode
     public void keyTyped(KeyEvent e){
         textfield = (JTextField) e.getComponent();
         textfield.setForeground(Color.BLACK);
@@ -67,6 +71,7 @@ public class TextHandler implements MouseListener, KeyListener{
     }
 
 //TextField Methods
+    //When the mouse hovers over the textfield, it will display the hover over format
     private void hoverText(JTextField textfield) {
         textfield.setOpaque(true);
         textfield.setBackground(BGREY);
@@ -78,12 +83,14 @@ public class TextHandler implements MouseListener, KeyListener{
             placeholder = compare;
         }
     }
+    //The edit format. Placeholder is only displayed when field is empty
     private void editText(JTextField textfield) {
         if(textfield.getText().equals(placeholder)) {
             textfield.setCaretPosition(0);
             textfield.setText("");
         }
     }
+    //Changes format back to nonedit mode. Clear background and black text (or placeholder)
     private void submitText(JTextField textfield) {
         textfield.setOpaque(false);
         textfield.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));

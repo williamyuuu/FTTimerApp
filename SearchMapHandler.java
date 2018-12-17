@@ -27,6 +27,8 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
     //comboBox.setBounds(25, 19, 268, 37);
     //shows up even when it doesn't match
 
+
+    //When you press enter, the field sets to seleted index in comboBox
     public void actionPerformed(ActionEvent arg0) {
         try {
             textfield.setText(comboBox.getSelectedItem().toString());
@@ -35,7 +37,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             textfield.remove(comboBox);
         }
         catch(Exception e) {}
-        }
+    }
 
     public void keyPressed(KeyEvent e){
         if(firstTime) {
@@ -44,7 +46,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             firstTime = false;
         }
 
-        //keycode 38 is up arrow
+        //keycode 38 is up arrow. Moves up the combobox selection.
         if(e.getKeyCode() == 38) {
             int x = comboBox.getSelectedIndex();
             if(x > 0){
@@ -53,7 +55,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             //textfield.add(comboBox);
             //comboBox.showPopup();
         }
-        //keycode 40 is down arrow
+        //Moves down the comboBox Selection. If down at bottom, resets to top
         else if (e.getKeyCode() == 40) {
             int x = comboBox.getSelectedIndex();
             int y = comboBox.getItemCount();
@@ -70,6 +72,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
 
+    //
     private class TextFieldCaretListener implements CaretListener {
         public void caretUpdate(CaretEvent e){
             try{
@@ -92,6 +95,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             }
         }
     }
+    //This runs the ComboBox set up and caretlistener set up
     private void runOnce (JTextField textfield){
             textfield.setHorizontalAlignment(textfield.LEFT);
             textfield.addCaretListener(new TextFieldCaretListener());
@@ -108,6 +112,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             disableKeys(textfield.getInputMap());
             //textfield.add(comboBox);
     }
+    //Disables the usage of UP and DOWN keys within the textfield
     private void disableKeys(InputMap inputMap) {
         String[] keys = {"UP", "DOWN"};
         for (String key : keys) {
