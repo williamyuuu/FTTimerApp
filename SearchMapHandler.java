@@ -8,8 +8,13 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
     //List of names
     //** Get a Reader to read a database file of all map
     //** input the names into the mapList
-    private static String[] mapList = {"Cavern Lower Path", "CLP", "Chicken Festival 1",
-                                        "Chicken Festival 2", "Chicken Festival 3", "Csadas", "casdasd", "cassdasd", "Map"};
+    private static String[] mapList = {"Above the Cave","Arma's Hideout","Below the Cave","Cave Depths",
+    "Cave Entrance (Vanishing Journey)","Cave's End","Damp Falls","Eastern Cave Path 1","Eastern Cave Path 2","Fire Rock Zone",
+    "Fire Spirit Zone","Fire Zone","Fire Zone Cliff","Forked Road 1","Forked Road 2","Hidden Cave (Vanishing Journey)","Hidden Fire Zone",
+    "Hidden Lakeshore","Lake of Oblivion","Lakeshore","Lakeshore (2)","Mirage Cliff","Nameless Town","Rock Zone","Spirit Zone",
+    "Split Road of Destiny (Vanishing Journey)","Vanishing Journey Entrance","Weathered Land of Happiness","Weathered Land of Happiness and Rage",
+    "Weathered Land of Joy","Weathered Land of Rage","Weathered Land of Rage and Sorrow","Weathered Land of Sorrow","Weathered Land of Sorrow and Joy",
+    "Western Cave Path 1","Western Cave Path 2"};
 
     private JTextField textfield;
     private JComboBox<String> comboBox;
