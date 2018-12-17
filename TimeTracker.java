@@ -133,6 +133,7 @@ public class TimeTracker extends JFrame{
         //Only searches for maps if typed into map textfield
         if(textfield.equals(textMap)){
             textfield.addKeyListener(maphandler);
+            textfield.addActionListener(maphandler);
         }
     }
     //If there is a timer, cancel it.
