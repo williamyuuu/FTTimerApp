@@ -34,13 +34,13 @@ public class TimeTracker extends JFrame{
         //Choice choice = new Choice();
 
         //User input JTextFields
-        textName = new JTextField("...");
+        textName = new JTextField("Name ");
         createTextField(textName, 100, 20);
-        textMap = new JTextField("...");
+        textMap = new JTextField("Map Name ");
         createTextField(textMap, 150, 20);
-        textChannel = new JTextField("...");
+        textChannel = new JTextField("Ch ");
         createTextField(textChannel, 40, 20);
-        textPaid = new JTextField("...");
+        textPaid = new JTextField("Paid ");
         createTextField(textPaid, 50, 20);
 
         labelID = new JLabel();
@@ -163,10 +163,5 @@ public class TimeTracker extends JFrame{
         RESET_TIME = start; //Technically don't need this if timer always 60
                             //But I want this for future user time input settings
         createView();
-    }
-    public void textWhich (JTextField textfield) {
-        if(textfield.equals(textName)) {
-            System.out.println("wew, text name");
-        }
     }
 } ////////// End of TimeTracker

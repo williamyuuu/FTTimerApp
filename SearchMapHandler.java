@@ -26,10 +26,10 @@ public class SearchMapHandler implements KeyListener{
         comboBox.setOpaque(false);
         comboBox.setBounds(25, 19, 268, 37);
         //shows up even when it doesn't match
-        if(textfield.getText().equals("...")){
+        try {
             comboBox.removeAllItems();
             comboBox.hidePopup();
-        }
+            textfield.remove(comboBox);
         if(textfield.getText().length() > 0){
             for(String string : mapList) {
                 if(string.toLowerCase().startsWith(textfield.getText().toLowerCase())) {
@@ -39,6 +39,7 @@ public class SearchMapHandler implements KeyListener{
                 }
             }
         }
+    } catch (Exception e1) {}
     }
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}

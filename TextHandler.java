@@ -7,6 +7,7 @@ public class TextHandler implements MouseListener, KeyListener{
     JTextField textfield;
     String placeholder, compare;
     Color BGREY = new Color(224, 224, 224); //Custom lighter gray color
+    int[] oKeys = {16, 37, 38, 39, 40, 20, 10};
 
     //mouse enters and creates edit display, black border and GREY background
     public void mouseEntered(MouseEvent e) {
@@ -33,17 +34,20 @@ public class TextHandler implements MouseListener, KeyListener{
     public void keyPressed(KeyEvent e){
         //8 = backspace 16=shift 37-40=arrows caps=20 space=32
         textfield = (JTextField) e.getComponent();
-        textfield.setForeground(Color.BLACK);
+        if((e.getKeyCode() != oKeys[0]) && (e.getKeyCode() != oKeys[1]) && (e.getKeyCode() != oKeys[2])
+                && (e.getKeyCode() != oKeys[3]) && (e.getKeyCode() != oKeys[4]) && (e.getKeyCode() != oKeys[5])){
+            textfield.setForeground(Color.BLACK);
+        }
         if(e.getKeyCode() == 10){
             submitText(textfield);
         }
     }
     public void keyReleased(KeyEvent e){
         textfield = (JTextField) e.getComponent();
-        if(e.getKeyCode() == 8){
+        if((e.getKeyCode() == 8) || e.getKeyCode() == 10){
             if(textfield.getText().equals("")) {
                 textfield.setForeground(Color.GRAY);
-                textfield.setText("...");
+                textfield.setText(placeholder);
                 textfield.setCaretPosition(0);
             }
         }
@@ -63,8 +67,8 @@ public class TextHandler implements MouseListener, KeyListener{
         textfield.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         compare = textfield.getText();
         //if text within is one of the following, set as placeholder
-        if(compare.equals("...") || compare.equals("Map Name") || compare.equals("Ch")
-            || compare.equals("Paid")) {
+        if(compare.equals("Name ") || compare.equals("Map Name ") || compare.equals("Ch ")
+            || compare.equals("Paid ")) {
             placeholder = compare;
         }
     }
