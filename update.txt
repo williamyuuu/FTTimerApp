@@ -14,7 +14,10 @@ Alpha 0.2 (a.2) Nov 30, 2018
 Alpha 0.3 (a.3) Dec 5, 2018
 ----------------------------
     MouseListeners and KeyListeners implemented in single textHandler File Dec, 10, 2018
-    
-Placeholders to be complete. Key and Mouse Handlers
-Appropriate placeholder words when exited.
+    Placeholders to be complete. Key and Mouse Handlers
+    Appropriate placeholder words when exited.
+    SearchMapHandler has a list of Arcane map names. ComboBox works
+Alpha 0.4 (a.4) Dec 17, 2018
 ----------------------------
+Working on placement of comboBox
+Work on database writer/reader
