@@ -28,7 +28,7 @@ public class Layout{
 
 
         //Main frame set up
-        frame.setTitle("Frenzy Timer version a.2");
+        frame.setTitle("Frenzy Timer version a.4");
         frame.setSize(1200, 113);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
