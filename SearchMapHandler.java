@@ -101,7 +101,8 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
                 comboBox.hidePopup();
                 comboBox.removeAllItems();
                 textfield.remove(comboBox);
-                if(e.getMark() > 0) {
+                //Dislays depending on how many letters typed -- setting to 0 misplaces suggestion box
+                if(e.getMark() > 1) {
                     for(String string : mapList){
                         if(string.toLowerCase().startsWith(textfield.getText().toLowerCase())){
                             textfield.add(comboBox);
@@ -112,7 +113,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
                 }
             }
             catch(Exception e1) {}
-            if(e.getMark() < 2) {
+            if(e.getMark() < 1) {
                 //textfield.remove(comboBox);
             }
         }
@@ -129,7 +130,8 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             comboBox.setAutoscrolls(true);
             comboBox.setBorder(null);
             comboBox.setOpaque(false);
-            comboBox.setBounds(25, 19, 268, 37);
+            //bound is set to display under texthandler textbox
+            comboBox.setBounds(0, 20, 100, 20);
 
             disableKeys(textfield.getInputMap());
             //textfield.add(comboBox);
