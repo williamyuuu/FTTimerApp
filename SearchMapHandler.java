@@ -131,7 +131,7 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
             comboBox.setBorder(null);
             comboBox.setOpaque(false);
             //bound is set to display under texthandler textbox
-            comboBox.setBounds(0, 20, 100, 20);
+            comboBox.setBounds(0, 20, 150, 20);
 
             disableKeys(textfield.getInputMap());
             //textfield.add(comboBox);
