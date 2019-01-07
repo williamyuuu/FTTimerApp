@@ -144,11 +144,13 @@ public class TimeTracker extends JFrame{
         panel.setBackground(Color.GREEN); //restarting timer resets color to GREEN
         createTask();
         timer.scheduleAtFixedRate(task,0,1000);
+        //System.out.println("Timer started");
 	}
     //cancels timer
     private void stopTime() {
         if(timer != null){
             timer.cancel();
+            //System.out.println("Timer stopped");
         }
     }
     //stops timer and resets to non-running timer

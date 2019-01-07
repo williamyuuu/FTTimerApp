@@ -46,23 +46,28 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
     // ** still need to get the position to display properly
     // ** possibly only start suggestion after 2 letters?
 
-    //comboBox.setBounds(25, 19, 268, 37);
+    //comboBox.setBounds(0, 20, 150, 20);
     //shows up even when it doesn't match
 
 
     //When you press enter, the field sets to seleted index in comboBox
     public void actionPerformed(ActionEvent arg0) {
         try {
+            System.out.println("Action performed");
             textfield.setText(comboBox.getSelectedItem().toString());
             comboBox.removeAllItems();
             comboBox.hidePopup();
             textfield.remove(comboBox);
         }
-        catch(Exception e) {}
+        catch(Exception e) {
+            System.out.println("Action Exception");
+        }
     }
 
     public void keyPressed(KeyEvent e){
+        System.out.println("Key Pressed");
         if(firstTime) {
+            System.out.println("First time key pressed");
             textfield = (JTextField) e.getComponent();
             runOnce(textfield);
             firstTime = false;
@@ -120,21 +125,22 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
     }
     //This runs the ComboBox set up and caretlistener set up
     private void runOnce (JTextField textfield){
-            textfield.setHorizontalAlignment(textfield.LEFT);
-            textfield.addCaretListener(new TextFieldCaretListener());
-            textfield.setColumns(10);
+        textfield.setHorizontalAlignment(textfield.LEFT);
+        textfield.addCaretListener(new TextFieldCaretListener());
+        //textfield.setColumns(10);
 
-            comboBox = new JComboBox<String>();
-            comboBox.setFocusCycleRoot(true);
-            comboBox.setFocusTraversalPolicyProvider(true);
-            comboBox.setAutoscrolls(true);
-            comboBox.setBorder(null);
-            comboBox.setOpaque(false);
-            //bound is set to display under texthandler textbox
-            comboBox.setBounds(0, 20, 150, 20);
+        comboBox = new JComboBox<String>();
+        //bound is set to display under texthandler textbox
+        comboBox.setBounds(0, 20, 200, 20);
+        comboBox.setFocusCycleRoot(true);
+        comboBox.setFocusTraversalPolicyProvider(true);
+        comboBox.setAutoscrolls(true);
+        comboBox.setBorder(null);
+        comboBox.setOpaque(false);
 
-            disableKeys(textfield.getInputMap());
-            //textfield.add(comboBox);
+        disableKeys(textfield.getInputMap());
+        //textfield.add(comboBox);
+        System.out.println("running once");
     }
     //Disables the usage of UP and DOWN keys within the textfield
     private void disableKeys(InputMap inputMap) {
