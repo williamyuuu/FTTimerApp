@@ -19,5 +19,7 @@ Alpha 0.3 (a.3) Dec 5, 2018
     SearchMapHandler has a list of Arcane map names. ComboBox works
 Alpha 0.4 (a.4) Dec 17, 2018
 ----------------------------
-Working on placement of comboBox
-Work on database writer/reader
+    Placement of ComboBox fixed
+    Bug where having text in MapNames textfield while timer is running has been fixed
+    Database Reader implemented Jan, 10, 2019
+Working on Database Writer
