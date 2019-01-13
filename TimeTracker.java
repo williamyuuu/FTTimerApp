@@ -10,8 +10,8 @@ public class TimeTracker extends JFrame{
     //Objects
     JPanel panel = new JPanel();
     TextHandler texthandler = new TextHandler();
-    SearchMapHandler maphandler = new SearchMapHandler();
-    SearchNameHandler namehandler = new SearchNameHandler();
+    SearchHandler maphandler = new SearchHandler();
+    SearchHandler namehandler = new SearchHandler();
     private Timer timer;
     private TimerTask task;
 
