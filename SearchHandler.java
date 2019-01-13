@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class SearchMapHandler extends JFrame implements KeyListener,ActionListener{
+public class SearchHandler extends JFrame implements KeyListener,ActionListener{
 
     //DBReader will traverse through .db file
     DBReader database = new DBReader();
