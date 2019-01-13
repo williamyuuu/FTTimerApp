@@ -11,17 +11,17 @@ public class DBReader {
     private int count = 0;
 
     //opening a file. If not found, it will send out exception
-    public void openFile() {
+    private void openFile(String databaseFile) {
         try{
-            input = new Scanner(new File("mapnames.db")); //opens mapnames.db
+            input = new Scanner(new File(databaseFile)); //opens mapnames.db
         }
         catch (Exception e){
-            System.out.println("Could not find mapnames.db");
+            System.out.println("Could not find " + databaseFile);
         }
     }
 
     //reading file. Traverses through file. Adds onto maps array.
-    public void readFile() {
+    private void readFile() {
         while(input.hasNext()){
             String a = input.nextLine();
             //if it contains these, it will skip adding it into array
@@ -34,12 +34,19 @@ public class DBReader {
             }
         }
     }
-    //returns array of the database
-    public String[] getArray(){
-        return maps;
-    }
-    public void closeFile(){
+    private void closeFile(){
         input.close();
+    }
+    //Traverses through database and returns the database array
+    public String[] getArray(String database){
+        openFile(database);
+        System.out.println("File opened");
+        readFile();
+        System.out.println("File read");
+        closeFile();
+        System.out.println("File closed");
+        return maps;
+
     }
     /*//debugger to print out all of the maps
     public void readList(){

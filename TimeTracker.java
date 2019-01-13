@@ -11,6 +11,7 @@ public class TimeTracker extends JFrame{
     JPanel panel = new JPanel();
     TextHandler texthandler = new TextHandler();
     SearchMapHandler maphandler = new SearchMapHandler();
+    SearchNameHandler namehandler = new SearchNameHandler();
     private Timer timer;
     private TimerTask task;
 
@@ -131,10 +132,17 @@ public class TimeTracker extends JFrame{
         textfield.addMouseListener(texthandler);
         textfield.addKeyListener(texthandler);
         //Only searches for maps if typed into map textfield
+
         if(textfield.equals(textMap)){
+            System.out.println("textmap handlers");
             textfield.addKeyListener(maphandler);
             textfield.addActionListener(maphandler);
+        }else if(textfield.equals(textName)){
+            System.out.println("textname handlers");
+            textfield.addKeyListener(namehandler);
+            textfield.addActionListener(namehandler);
         }
+
     }
     //If there is a timer, cancel it.
     //stops running timer. Creates a new timer at green and starts
