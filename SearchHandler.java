@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class SearchMapHandler extends JFrame implements KeyListener,ActionListener{
+public class SearchHandler extends JFrame implements KeyListener,ActionListener{
 
     //DBReader will traverse through .db file
     DBReader database = new DBReader();
@@ -93,12 +93,10 @@ public class SearchMapHandler extends JFrame implements KeyListener,ActionListen
     private void runOnce (JTextField textfield){
         //DBReader code. Opens the map database and returns the array.
         if(textfield.getText().equals("Map Name ")){
-            System.out.println(textfield.getText() + "---------");
             System.out.println("running mapnames.db");
             mapList = database.getArray("mapnames.db");
         }
         else if(textfield.getText().equals("Name ")){
-            System.out.println(textfield.getText() + "----------");
             System.out.println("running username.db");
             mapList = database.getArray("usernames.db");
         }
