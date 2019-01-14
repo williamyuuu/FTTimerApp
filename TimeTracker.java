@@ -134,11 +134,9 @@ public class TimeTracker extends JFrame{
         //Only searches for maps if typed into map textfield
 
         if(textfield.equals(textMap)){
-            System.out.println("textmap handlers");
             textfield.addKeyListener(maphandler);
             textfield.addActionListener(maphandler);
         }else if(textfield.equals(textName)){
-            System.out.println("textname handlers");
             textfield.addKeyListener(namehandler);
             textfield.addActionListener(namehandler);
         }
